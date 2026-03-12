@@ -1,22 +1,36 @@
 package com.bookmystay;
 
+import com.bookmystay.model.Room;
+import com.bookmystay.model.SingleRoom;
+import com.bookmystay.model.DoubleRoom;
+import com.bookmystay.model.SuiteRoom;
+
 /**
- * Entry point for the Hotel Booking System application.
- * Demonstrates how a Java program begins execution and produces console output.
- *
- * @author Gyan163
- * @version 1.0
+ * Main application entry point for Use Case 2.
+ * Demonstrates room types, inheritance, and availability.
  */
 public class Main {
 
-    /**
-     * The main() method is the entry point of the application.
-     * JVM starts execution from here.
-     *
-     * @param args Command-line arguments (not used in this program)
-     */
     public static void main(String[] args) {
-        System.out.println("Welcome to Hotel Booking System v1.0");
-        System.out.println("Application has started successfully.");
+
+        // Room availability variables
+        int singleRoomsAvailable = 5;
+        int doubleRoomsAvailable = 3;
+        int suiteRoomsAvailable = 2;
+
+        // Create room objects using polymorphism
+        Room singleRoom = new SingleRoom();
+        Room doubleRoom = new DoubleRoom();
+        Room suiteRoom = new SuiteRoom();
+
+        // Display room details and availability
+        singleRoom.displayRoomDetails();
+        System.out.println("Available: " + singleRoomsAvailable + "\n");
+
+        doubleRoom.displayRoomDetails();
+        System.out.println("Available: " + doubleRoomsAvailable + "\n");
+
+        suiteRoom.displayRoomDetails();
+        System.out.println("Available: " + suiteRoomsAvailable + "\n");
     }
 }
