@@ -2,35 +2,43 @@ package com.bookmystay;
 
 import com.bookmystay.model.Reservation;
 import com.bookmystay.service.BookingQueue;
+import com.bookmystay.service.BookingService;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("Welcome to Book My Stay App");
+        System.out.println("Welcome to Book My Stay App v1.0\n");
 
-        // --- Use Case 5: Booking Request Queue ---
+        // =========================
+        // Use Case 5: Booking Queue
+        // =========================
         BookingQueue bookingQueue = new BookingQueue();
 
-        // Create sample reservations
-        Reservation r1 = new Reservation("Alice", "Single", 2);
-        Reservation r2 = new Reservation("Bob", "Double", 3);
-        Reservation r3 = new Reservation("Charlie", "Suite", 1);
+        bookingQueue.addBooking(new Reservation("Alice", "Single", 2));
+        bookingQueue.addBooking(new Reservation("Bob", "Double", 3));
+        bookingQueue.addBooking(new Reservation("Charlie", "Suite", 1));
 
-        // Add requests to the queue
-        bookingQueue.addRequest(r1);
-        bookingQueue.addRequest(r2);
-        bookingQueue.addRequest(r3);
+        System.out.println("\nCurrent Booking Requests in Queue:");
+        bookingQueue.printQueue();
 
-        // Display all queued requests
-        bookingQueue.showAllRequests();
+        // =========================
+        // Use Case 6: Booking Service
+        // =========================
+        // Initialize inventory
+        Map<String, Integer> roomInventory = new HashMap<>();
+        roomInventory.put("Single", 2);
+        roomInventory.put("Double", 1);
+        roomInventory.put("Suite", 1);
 
-        // Peek at the next reservation (without removing)
-        System.out.println("\nNext reservation to process: " + bookingQueue.peekNextRequest());
+        // Create booking service
+        BookingService bookingService = new BookingService(roomInventory);
 
-        // Process (remove) the next reservation
-        System.out.println("\nProcessing reservation: " + bookingQueue.pollNextRequest());
+        // Process all booking requests in the queue
+        bookingService.processQueue(bookingQueue);
 
-        // Display remaining requests after polling
-        bookingQueue.showAllRequests();
+        System.out.println("\nAll bookings processed. Remaining inventory:");
+        roomInventory.forEach((type, count) ->
+                System.out.println(type + " Rooms left: " + count));
     }
 }

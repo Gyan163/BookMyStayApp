@@ -5,53 +5,36 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * Manages booking requests in FIFO order
+ * Queue to hold booking requests in FIFO order
  */
 public class BookingQueue {
 
-    private Queue<Reservation> requestQueue;
+    private Queue<Reservation> queue;
 
-    // Constructor
     public BookingQueue() {
-        this.requestQueue = new LinkedList<>();
+        queue = new LinkedList<>();
     }
 
-    /**
-     * Add a booking request to the queue
-     */
-    public void addRequest(Reservation reservation) {
-        requestQueue.add(reservation);
+    // Add a reservation to the queue
+    public void addBooking(Reservation reservation) {
+        queue.offer(reservation); // FIFO insertion
         System.out.println("Added booking request: " + reservation);
     }
 
-    /**
-     * Check the next reservation without removing it
-     */
-    public Reservation peekNextRequest() {
-        return requestQueue.peek();
-    }
-
-    /**
-     * Process (remove) the next reservation
-     */
+    // Poll the next reservation from the queue
     public Reservation pollNextRequest() {
-        return requestQueue.poll();
+        return queue.poll();
     }
 
-    /**
-     * Display all queued requests
-     */
-    public void showAllRequests() {
-        System.out.println("\nCurrent Booking Requests in Queue:");
-        for (Reservation r : requestQueue) {
+    // Get current queue size
+    public int getQueueSize() {
+        return queue.size();
+    }
+
+    // Print all reservations in the queue
+    public void printQueue() {
+        for (Reservation r : queue) {
             System.out.println(r);
         }
-    }
-
-    /**
-     * Get number of requests in the queue
-     */
-    public int getQueueSize() {
-        return requestQueue.size();
     }
 }
