@@ -1,16 +1,22 @@
 package com.bookmystay.model;
 
 /**
- * DoubleRoom is a concrete room type.
+ * Represents a Double Room
  */
 public class DoubleRoom extends Room {
 
     public DoubleRoom() {
-        super("Double", 2, 90.0);
+        this.beds = 2;
+        this.price = 90.0;
     }
 
     @Override
     public void displayRoomDetails() {
-        System.out.println("Room Type: " + type + ", Beds: " + numberOfBeds + ", Price: $" + price);
+        System.out.println("Room Type: Double, Beds: " + beds + ", Price: $" + price);
+    }
+
+    @Override
+    public String getRoomType() {
+        return "Double";
     }
 }

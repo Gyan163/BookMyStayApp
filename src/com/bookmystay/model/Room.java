@@ -1,26 +1,17 @@
 package com.bookmystay.model;
 
 /**
- * Abstract Room class representing a general room concept.
- * Cannot be instantiated directly.
+ * Abstract Room class
+ * Represents common attributes and behavior for all room types.
  */
 public abstract class Room {
 
-    protected String type;
-    protected int numberOfBeds;
+    protected int beds;
     protected double price;
 
-    public Room(String type, int numberOfBeds, double price) {
-        this.type = type;
-        this.numberOfBeds = numberOfBeds;
-        this.price = price;
-    }
-
-    // Abstract method to display room details
+    // Display room details (implemented by subclasses)
     public abstract void displayRoomDetails();
 
-    // Getters
-    public String getType() { return type; }
-    public int getNumberOfBeds() { return numberOfBeds; }
-    public double getPrice() { return price; }
+    // Return room type as string ("Single", "Double", "Suite")
+    public abstract String getRoomType();
 }
