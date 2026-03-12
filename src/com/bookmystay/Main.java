@@ -1,49 +1,36 @@
 package com.bookmystay;
 
-import com.bookmystay.model.Room;
-import com.bookmystay.model.SingleRoom;
-import com.bookmystay.model.DoubleRoom;
-import com.bookmystay.model.SuiteRoom;
-import com.bookmystay.service.RoomInventory;
-import com.bookmystay.search.SearchService;
+import com.bookmystay.model.Reservation;
+import com.bookmystay.service.BookingQueue;
 
-import java.util.Arrays;
-import java.util.List;
-
-/**
- * Main class for Use Case 4: Search Available Rooms
- */
 public class Main {
-
     public static void main(String[] args) {
 
-        // --- Step 1: Create centralized inventory ---
-        RoomInventory inventory = new RoomInventory();
-        inventory.addRoomType("Single", 5);
-        inventory.addRoomType("Double", 3);
-        inventory.addRoomType("Suite", 2);
+        System.out.println("Welcome to Book My Stay App");
 
-        // --- Step 2: Create room objects ---
-        Room singleRoom = new SingleRoom();
-        Room doubleRoom = new DoubleRoom();
-        Room suiteRoom = new SuiteRoom();
+        // --- Use Case 5: Booking Request Queue ---
+        BookingQueue bookingQueue = new BookingQueue();
 
-        // --- Step 3: Display room details (optional) ---
-        singleRoom.displayRoomDetails();
-        doubleRoom.displayRoomDetails();
-        suiteRoom.displayRoomDetails();
+        // Create sample reservations
+        Reservation r1 = new Reservation("Alice", "Single", 2);
+        Reservation r2 = new Reservation("Bob", "Double", 3);
+        Reservation r3 = new Reservation("Charlie", "Suite", 1);
 
-        // --- Step 4: Create a list of all rooms ---
-        List<Room> rooms = Arrays.asList(singleRoom, doubleRoom, suiteRoom);
+        // Add requests to the queue
+        bookingQueue.addRequest(r1);
+        bookingQueue.addRequest(r2);
+        bookingQueue.addRequest(r3);
 
-        // --- Step 5: Create SearchService ---
-        SearchService searchService = new SearchService(inventory);
+        // Display all queued requests
+        bookingQueue.showAllRequests();
 
-        // --- Step 6: Show available rooms (read-only) ---
-        searchService.showAvailableRooms(rooms);
+        // Peek at the next reservation (without removing)
+        System.out.println("\nNext reservation to process: " + bookingQueue.peekNextRequest());
 
-        // --- Step 7: Demonstrate that inventory is not modified ---
-        System.out.println("\nInventory after search (should be unchanged):");
-        inventory.displayInventory();
+        // Process (remove) the next reservation
+        System.out.println("\nProcessing reservation: " + bookingQueue.pollNextRequest());
+
+        // Display remaining requests after polling
+        bookingQueue.showAllRequests();
     }
 }

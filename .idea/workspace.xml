@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ec45a4ec-9b2e-4dd6-9ec7-fa09a40be7d0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookMyStayApp/com/bookmystay/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookMyStayApp/com/bookmystay/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookMyStayApp/com/bookmystay/model/DoubleRoom.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookMyStayApp/com/bookmystay/model/DoubleRoom.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookMyStayApp/com/bookmystay/model/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookMyStayApp/com/bookmystay/model/Room.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookMyStayApp/com/bookmystay/model/SingleRoom.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookMyStayApp/com/bookmystay/model/SingleRoom.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookMyStayApp/com/bookmystay/model/SuiteRoom.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookMyStayApp/com/bookmystay/model/SuiteRoom.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bookmystay/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bookmystay/Main.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Gyan163"
+  }
+}]]></component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="744a5c0f-ca80-4c39-86e1-5313626ba6a4" />
+  </component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Gyan163/BookMyStayApp.git",
+    "accountId": "744a5c0f-ca80-4c39-86e1-5313626ba6a4"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="3AqToM77FLP29AfGWfxc1taw8ZX" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Hp/Desktop/BookMyStayApp",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.keymap"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ec45a4ec-9b2e-4dd6-9ec7-fa09a40be7d0" name="Changes" comment="" />
+      <created>1773319274466</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1773319274466</updated>
+    </task>
+    <servers />
+  </component>
+</project>
