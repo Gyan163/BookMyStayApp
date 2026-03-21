@@ -79,15 +79,38 @@ public class Main {
         for (Reservation r : testBookings) {
             try {
                 System.out.println("\nProcessing booking for: " + r.getGuestName());
-
-                // Validate booking
                 BookingValidator.validate(r);
-
                 System.out.println("Booking is valid ✅");
-
             } catch (InvalidBookingException e) {
                 System.out.println("Booking failed ❌: " + e.getMessage());
             }
         }
+
+
+        // ==============================
+        // Use Case 10: Cancellation & Rollback
+        // ==============================
+
+        System.out.println("\n--- Use Case 10: Cancellation & Rollback ---");
+
+        CancellationService cancelService = new CancellationService();
+
+        Reservation c1 = new Reservation("Jack", "Single", 2);
+        Reservation c2 = new Reservation("Kate", "Double", 3);
+
+        // Confirm bookings
+        cancelService.confirmBooking(c1);
+        cancelService.confirmBooking(c2);
+
+        cancelService.showInventory();
+
+        // Cancel booking
+        cancelService.cancelBooking(c2);
+
+        cancelService.showInventory();
+        cancelService.showRollbackStack();
+
+        // Try invalid cancellation
+        cancelService.cancelBooking(new Reservation("Fake", "Single", 1));
     }
 }
