@@ -2,10 +2,7 @@ package com.bookmystay;
 
 import com.bookmystay.model.Reservation;
 import com.bookmystay.model.Service;
-import com.bookmystay.service.AddOnServiceManager;
-import com.bookmystay.service.BookingQueue;
-import com.bookmystay.service.BookingHistory;
-import com.bookmystay.service.BookingReportService;
+import com.bookmystay.service.*;
 
 public class Main {
 
@@ -55,20 +52,42 @@ public class Main {
         BookingHistory history = new BookingHistory();
         BookingReportService reportService = new BookingReportService();
 
-        // Simulating confirmed bookings
         Reservation r1 = new Reservation("David", "Single", 2);
         Reservation r2 = new Reservation("Emma", "Double", 4);
         Reservation r3 = new Reservation("Frank", "Suite", 1);
 
-        // Store bookings in history
         history.addBooking(r1);
         history.addBooking(r2);
         history.addBooking(r3);
 
-        // Display booking history
         reportService.printAllBookings(history.getAllBookings());
-
-        // Generate summary report
         reportService.generateSummary(history.getAllBookings());
+
+
+        // ==============================
+        // Use Case 9: Validation & Error Handling
+        // ==============================
+
+        System.out.println("\n--- Use Case 9: Validation & Error Handling ---");
+
+        Reservation validBooking = new Reservation("George", "Single", 2);
+        Reservation invalidRoom = new Reservation("Harry", "Luxury", 2);
+        Reservation invalidNights = new Reservation("Ivy", "Double", -1);
+
+        Reservation[] testBookings = {validBooking, invalidRoom, invalidNights};
+
+        for (Reservation r : testBookings) {
+            try {
+                System.out.println("\nProcessing booking for: " + r.getGuestName());
+
+                // Validate booking
+                BookingValidator.validate(r);
+
+                System.out.println("Booking is valid ✅");
+
+            } catch (InvalidBookingException e) {
+                System.out.println("Booking failed ❌: " + e.getMessage());
+            }
+        }
     }
 }
