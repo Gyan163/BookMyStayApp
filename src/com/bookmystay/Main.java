@@ -98,19 +98,47 @@ public class Main {
         Reservation c1 = new Reservation("Jack", "Single", 2);
         Reservation c2 = new Reservation("Kate", "Double", 3);
 
-        // Confirm bookings
         cancelService.confirmBooking(c1);
         cancelService.confirmBooking(c2);
 
         cancelService.showInventory();
 
-        // Cancel booking
         cancelService.cancelBooking(c2);
 
         cancelService.showInventory();
         cancelService.showRollbackStack();
 
-        // Try invalid cancellation
-        cancelService.cancelBooking(new Reservation("Fake", "Single", 1));
+
+        // ==============================
+        // Use Case 11: Concurrency & Synchronization
+        // ==============================
+
+        System.out.println("\n--- Use Case 11: Concurrency & Synchronization ---");
+
+        ConcurrentBookingProcessor processor = new ConcurrentBookingProcessor();
+
+        // Add bookings
+        processor.addBooking(new Reservation("A1", "Single", 1));
+        processor.addBooking(new Reservation("A2", "Single", 1));
+        processor.addBooking(new Reservation("A3", "Single", 1));
+        processor.addBooking(new Reservation("B1", "Double", 1));
+        processor.addBooking(new Reservation("B2", "Double", 1));
+
+        // Create threads
+        BookingWorker t1 = new BookingWorker(processor, "Thread-1");
+        BookingWorker t2 = new BookingWorker(processor, "Thread-2");
+
+        // Start threads
+        t1.start();
+        t2.start();
+
+        try {
+            t1.join();
+            t2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        processor.showInventory();
     }
 }
