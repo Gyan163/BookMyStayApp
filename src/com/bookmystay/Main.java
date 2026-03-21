@@ -1,18 +1,20 @@
 package com.bookmystay;
 
 import com.bookmystay.model.Reservation;
+import com.bookmystay.model.Service;
+import com.bookmystay.service.AddOnServiceManager;
 import com.bookmystay.service.BookingQueue;
-import com.bookmystay.service.BookingService;
-import java.util.*;
 
 public class Main {
+
     public static void main(String[] args) {
 
         System.out.println("Welcome to Book My Stay App v1.0\n");
 
-        // =========================
-        // Use Case 5: Booking Queue
-        // =========================
+        // ==============================
+        // Use Case 5 & 6: Booking Queue
+        // ==============================
+
         BookingQueue bookingQueue = new BookingQueue();
 
         bookingQueue.addBooking(new Reservation("Alice", "Single", 2));
@@ -22,23 +24,29 @@ public class Main {
         System.out.println("\nCurrent Booking Requests in Queue:");
         bookingQueue.printQueue();
 
-        // =========================
-        // Use Case 6: Booking Service
-        // =========================
-        // Initialize inventory
-        Map<String, Integer> roomInventory = new HashMap<>();
-        roomInventory.put("Single", 2);
-        roomInventory.put("Double", 1);
-        roomInventory.put("Suite", 1);
 
-        // Create booking service
-        BookingService bookingService = new BookingService(roomInventory);
+        // ==============================
+        // Use Case 7: Add-On Services
+        // ==============================
 
-        // Process all booking requests in the queue
-        bookingService.processQueue(bookingQueue);
+        AddOnServiceManager addOnManager = new AddOnServiceManager();
 
-        System.out.println("\nAll bookings processed. Remaining inventory:");
-        roomInventory.forEach((type, count) ->
-                System.out.println(type + " Rooms left: " + count));
+        // Create services
+        Service food = new Service("S1", "Food Package", 500);
+        Service pickup = new Service("S2", "Airport Pickup", 1000);
+        Service spa = new Service("S3", "Spa Access", 1500);
+
+        // Example reservation ID (can be improved later)
+        String reservationId = "R101";
+
+        // Add services
+        addOnManager.addService(reservationId, food);
+        addOnManager.addService(reservationId, pickup);
+        addOnManager.addService(reservationId, spa);
+
+        // Calculate total cost
+        double totalCost = addOnManager.calculateTotalCost(reservationId);
+
+        System.out.println("\nTotal Add-On Cost: " + totalCost);
     }
 }
