@@ -4,11 +4,46 @@ import com.bookmystay.model.Reservation;
 import com.bookmystay.model.Service;
 import com.bookmystay.service.*;
 
+import java.util.*;
+
 public class Main {
 
     public static void main(String[] args) {
 
         System.out.println("Welcome to Book My Stay App v1.0\n");
+
+        // ==============================
+        // Use Case 12: Load Previous State
+        // ==============================
+
+        SystemState loadedState = PersistenceService.load();
+
+        List<Reservation> historyList;
+        Map<String, Integer> inventory;
+
+        if (loadedState != null) {
+            historyList = loadedState.getBookingHistory();
+            inventory = loadedState.getInventory();
+        } else {
+            historyList = new ArrayList<>();
+            inventory = new HashMap<>();
+            inventory.put("Single", 5);
+            inventory.put("Double", 5);
+            inventory.put("Suite", 5);
+        }
+
+
+        // ==============================
+        // Use Case 1–4 (Basic Booking Creation)
+        // ==============================
+
+        Reservation basic1 = new Reservation("Rahul", "Single", 2);
+        Reservation basic2 = new Reservation("Anita", "Double", 3);
+
+        System.out.println("Basic Reservations Created:");
+        System.out.println(basic1);
+        System.out.println(basic2);
+
 
         // ==============================
         // Use Case 5 & 6: Booking Queue
@@ -60,8 +95,10 @@ public class Main {
         history.addBooking(r2);
         history.addBooking(r3);
 
-        reportService.printAllBookings(history.getAllBookings());
-        reportService.generateSummary(history.getAllBookings());
+        historyList.addAll(history.getAllBookings());
+
+        reportService.printAllBookings(historyList);
+        reportService.generateSummary(historyList);
 
 
         // ==============================
@@ -108,6 +145,8 @@ public class Main {
         cancelService.showInventory();
         cancelService.showRollbackStack();
 
+        cancelService.cancelBooking(new Reservation("Fake", "Single", 1));
+
 
         // ==============================
         // Use Case 11: Concurrency & Synchronization
@@ -117,18 +156,15 @@ public class Main {
 
         ConcurrentBookingProcessor processor = new ConcurrentBookingProcessor();
 
-        // Add bookings
         processor.addBooking(new Reservation("A1", "Single", 1));
         processor.addBooking(new Reservation("A2", "Single", 1));
         processor.addBooking(new Reservation("A3", "Single", 1));
         processor.addBooking(new Reservation("B1", "Double", 1));
         processor.addBooking(new Reservation("B2", "Double", 1));
 
-        // Create threads
         BookingWorker t1 = new BookingWorker(processor, "Thread-1");
         BookingWorker t2 = new BookingWorker(processor, "Thread-2");
 
-        // Start threads
         t1.start();
         t2.start();
 
@@ -140,5 +176,17 @@ public class Main {
         }
 
         processor.showInventory();
+
+
+        // ==============================
+        // Use Case 12: Save State
+        // ==============================
+
+        System.out.println("\nSaving system state...");
+
+        SystemState newState = new SystemState(historyList, inventory);
+        PersistenceService.save(newState);
+
+        System.out.println("System shutdown complete ✅");
     }
 }
